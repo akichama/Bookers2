@@ -1,2 +1,48 @@
-<h1>Users#index</h1>
-<p>Find me in app/views/users/index.html.erb</p>
+ <h1>User info</h1>
+<table>
+  <tr>
+    <%= image_tag 'no_image', size: "100×100" %>
+  </tr>
+  <tr>
+    <th>name</th>
+    <td><%= user_id = current_user.name %></td>
+  </tr>
+  <tr>
+    <th>introduction</th>
+    <td><%= user_id = current_user.introduction %></td>
+  </tr>
+</table>
+
+<h1>New Book</h1>
+<%= form_with model: Book.new do |f| %>
+  <h4>title</h4>
+  <%= f.text_field :title %>
+	
+  <h4>Opinion</h4>
+  <%= f.text_area :body %>
+	
+  <%= f.submit 'Create Book' %>
+<% end %>
+
+<h1>Users</h1>
+ 
+ <table>
+  <thead>
+    <tr>
+      <th>image</th>
+      <th>name</th>
+    </tr>
+  </thead> 
+  
+  <% @users.each do |user| %>
+  
+  <tbody>
+    <tr>
+      <td><%= image_tag user.get_profile_image(100,100) %></td>
+      <td><%=  book.name %></td>
+      <td><%= link_to "show",user_path(user.id) %>
+
+    </tr>
+  </tbody>
+  <% end %>
+</table>
