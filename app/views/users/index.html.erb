@@ -1,15 +1,15 @@
- <h1>User info</h1>
+<h1>User info</h1>
 <table>
   <tr>
-    <%= image_tag 'no_image', size: "100×100" %>
+    <%= image_tag @user.get_profile_image(100,100) %>
   </tr>
   <tr>
     <th>name</th>
-    <td><%= user_id = current_user.name %></td>
+    <td><%= @user.name %></td>
   </tr>
   <tr>
     <th>introduction</th>
-    <td><%= user_id = current_user.introduction %></td>
+    <td><%= @user.introduction %></td>
   </tr>
 </table>
 
@@ -38,8 +38,8 @@
   
   <tbody>
     <tr>
-      <td><%= image_tag user.get_profile_image(100,100) %></td>
-      <td><%=  book.name %></td>
+      <td><%= image_tag @user.get_profile_image(100,100) %></td>
+      <td><%= user.name %></td>
       <td><%= link_to "show",user_path(user.id) %>
 
     </tr>
