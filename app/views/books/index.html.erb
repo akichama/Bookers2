@@ -1,3 +1,17 @@
+<div>
+  <%= flash[:notice] %>
+</div>
+
+<% if @book.errors.any? %>
+  <%= @book.errors.count %>error
+  <ul>
+    <% @book.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+
 <h1>User info</h1>
 <table>
   <tr>
@@ -13,19 +27,7 @@
   </tr>
 </table>
 
-<div>
-  <%= flash[:notice] %>
-</div>
-
 <h1>New Book</h1>
-<% if @book.errors.any? %>
-  <%= @book.errors.count %>error
-  <ul>
-    <% @book.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-  </ul>
-<% end %>
 
 <%= form_with model: Book.new do |f| %>
   <h4>title</h4>
@@ -47,7 +49,7 @@
     </tr>
   </thead> 
   
-  <% @books.each do |book| %>
+  <% @book.each do |book| %>
   
   <tbody>
     <tr>

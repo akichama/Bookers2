@@ -5,7 +5,6 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = current_user
     @user = User.find(params[:id])
     @books = @user.books
   end
@@ -15,11 +14,12 @@ class UsersController < ApplicationController
   end
   
   def update
-    update
     @user = User.find(params[:id])
     @user.update(user_params)
-    redirect_to :user_path
+    redirect_to :user
   end
+  
+  private
   
   def user_params
     params.require(:User).permit(:name, :introduction, :profile_image)
