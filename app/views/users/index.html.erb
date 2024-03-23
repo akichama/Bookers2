@@ -13,6 +13,8 @@
   </tr>
 </table>
 
+<p><%= link_to "Edit",edit_user_path(@user.id) %></p>
+
 <h1>New Book</h1>
 <%= form_with model: Book.new do |f| %>
   <h4>title</h4>
@@ -38,7 +40,7 @@
   
   <tbody>
     <tr>
-      <td><%= image_tag @user.get_profile_image(100,100) %></td>
+      <td><%= image_tag user.get_profile_image(100,100) %></td>
       <td><%= user.name %></td>
       <td><%= link_to "show",user_path(user.id) %>
 
