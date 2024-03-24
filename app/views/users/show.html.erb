@@ -1,50 +1,39 @@
-<h1>User info</h1>
-<table>
-  <tr>
-    <%= image_tag @user.get_profile_image(100,100) %>
-  </tr>
-  <tr>
-    <th>name</th>
-    <td><%= @user.name %></td>
-  </tr>
-  <tr>
-    <th>introduction</th>
-    <td><%= @user.introduction %></td>
-  </tr>
-</table>
+<div class= "container">
 
-<p><%= link_to "Edit",edit_user_path(@user.id) %></p>
+<div>
+  <%= flash[:notice] %>
+</div>
 
-<h1>New Book</h1>
-<%= form_with model: Book.new do |f| %>
-  <h4>title</h4>
-  <%= f.text_field :title %>
-	
-  <h4>Opinion</h4>
-  <%= f.text_area :body %>
-	
-  <%= f.submit 'Create Book' %>
-<% end %>
+<div class="row">
+  <div class="col-md-3">
+    <%= render 'books/list', books: @books %>
+  </div>
 
- <h1>Books</h1>
- 
- <table>
-  <thead>
-    <tr>
-      <th>title</th>
-      <th>Opinion</th>
-    </tr>
-  </thead> 
-  
-  <% @books.each do |book| %>
-  
-  <tbody>
-    <tr>
-      <td><%= @user.name %></td>
-      <td><%= image_tag book.user.get_profile_image(100,100) %></td>
-      <td><%= link_to book.title, book_path(book.id) %></td>
-      <td><%= book.body %></td>
-    </tr>
-  </tbody>
-  <% end %>
-</table>
+  <div class="col-md-8 offset-md-1">
+    <h1>Books</h1>
+    <table class="table table-striped">
+
+      <thead>
+        <tr>
+          <th>title</th>
+          <th>Opinion</th>
+        </tr>
+      </thead>
+
+      <% @books.each do |book| %>
+      <tbody>
+        <tr>
+          <td><%= @user.name %></td>
+          <td><%= link_to user_path(book.user_id) do %>
+              <%= image_tag book.user.get_profile_image(100,100) %>
+              <% end %>
+          </td>
+          <td><%= link_to book.title, book_path(book.id) %></td>
+          <td><%= book.body %></td>
+        </tr>
+      </tbody>
+      <% end %>
+    </table>
+  </div>
+  </div>
+</div>
